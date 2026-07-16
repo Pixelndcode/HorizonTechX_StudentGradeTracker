@@ -1,0 +1,135 @@
+{
+  "nbformat": 4,
+  "nbformat_minor": 0,
+  "metadata": {
+    "colab": {
+      "provenance": []
+    },
+    "kernelspec": {
+      "name": "python3",
+      "display_name": "Python 3"
+    },
+    "language_info": {
+      "name": "python"
+    }
+  },
+  "cells": [
+    {
+      "cell_type": "code",
+      "source": [
+        "!apt-get install openjdk-17-jdk-headless -qq > /dev/null"
+      ],
+      "metadata": {
+        "id": "rXif6jxg_3Im"
+      },
+      "execution_count": 7,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "%%writefile StudentGradeTracker.java\n",
+        "\n",
+        "import java.util.Scanner;\n",
+        "\n",
+        "public class StudentGradeTracker {\n",
+        "    public static void main(String[] args) {\n",
+        "\n",
+        "            Scanner sc = new Scanner(System.in);\n",
+        "\n",
+        "                    System.out.print(\"Enter number of students: \");\n",
+        "                            int n = sc.nextInt();\n",
+        "\n",
+        "                                    int[] marks = new int[n];\n",
+        "\n",
+        "                                            int sum = 0;\n",
+        "\n",
+        "                                                    for(int i = 0; i < n; i++) {\n",
+        "                                                                System.out.print(\"Enter marks of student \" + (i + 1) + \": \");\n",
+        "                                                                            marks[i] = sc.nextInt();\n",
+        "                                                                                        sum += marks[i];\n",
+        "                                                                                                }\n",
+        "\n",
+        "                                                                                                        int highest = marks[0];\n",
+        "                                                                                                                int lowest = marks[0];\n",
+        "\n",
+        "                                                                                                                        for(int i = 1; i < n; i++) {\n",
+        "\n",
+        "                                                                                                                                    if(marks[i] > highest) {\n",
+        "                                                                                                                                                    highest = marks[i];\n",
+        "                                                                                                                                                                }\n",
+        "\n",
+        "                                                                                                                                                                            if(marks[i] < lowest) {\n",
+        "                                                                                                                                                                                            lowest = marks[i];\n",
+        "                                                                                                                                                                                                        }\n",
+        "                                                                                                                                                                                                                }\n",
+        "\n",
+        "                                                                                                                                                                                                                        double average = (double) sum / n;\n",
+        "\n",
+        "                                                                                                                                                                                                                                System.out.println(\"\\n----- Student Grade Report -----\");\n",
+        "                                                                                                                                                                                                                                        System.out.println(\"Average Score: \" + average);\n",
+        "                                                                                                                                                                                                                                                System.out.println(\"Highest Score: \" + highest);\n",
+        "                                                                                                                                                                                                                                                        System.out.println(\"Lowest Score: \" + lowest);\n",
+        "\n",
+        "                                                                                                                                                                                                                                                                sc.close();\n",
+        "                                                                                                                                                                                                                                                                    }\n",
+        "                                                                                                                                                                                                                                                                    }"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "9kFKVXjmAUpF",
+        "outputId": "dd61cd0b-76e7-40d3-82b3-4641200e8fc7"
+      },
+      "execution_count": 15,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Overwriting StudentGradeTracker.java\n"
+          ]
+        }
+      ]
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!javac StudentGradeTracker.java"
+      ],
+      "metadata": {
+        "id": "k2hsY8AaAaOb"
+      },
+      "execution_count": 16,
+      "outputs": []
+    },
+    {
+      "cell_type": "code",
+      "source": [
+        "!echo -e \"5\\n78\\n85\\n92\\n67\\n88\" | java StudentGradeTracker"
+      ],
+      "metadata": {
+        "colab": {
+          "base_uri": "https://localhost:8080/"
+        },
+        "id": "dpBjGRf1AcLO",
+        "outputId": "5c7696c4-687e-4c4d-e2bc-071685f544d1"
+      },
+      "execution_count": 17,
+      "outputs": [
+        {
+          "output_type": "stream",
+          "name": "stdout",
+          "text": [
+            "Enter number of students: Enter marks of student 1: Enter marks of student 2: Enter marks of student 3: Enter marks of student 4: Enter marks of student 5: \n",
+            "----- Student Grade Report -----\n",
+            "Average Score: 82.0\n",
+            "Highest Score: 92\n",
+            "Lowest Score: 67\n"
+          ]
+        }
+      ]
+    }
+  ]
+}
